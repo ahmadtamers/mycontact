@@ -1,26 +1,10 @@
 import 'package:flutter/material.dart';
-import 'package:gammaltechcourseproject/ui/SocialMediaIcon/SMICON.dart';
 import 'package:url_launcher/url_launcher.dart';
-
-class IconAndUrl {
-  String IconImgAdd;
-  String IconImgUrl;
-  IconAndUrl({required this.IconImgAdd, required this.IconImgUrl});
-}
+import 'package:gammaltechcourseproject/ui/gridviewcontacts/gridViewContacts.dart';
+import 'package:gammaltechcourseproject/ui/SMListContact/SMListContact.dart';
 
 class MyContact extends StatelessWidget {
   MyContact({Key? key}) : super(key: key);
-
-  List<IconAndUrl> SMIconsList = [
-    IconAndUrl(
-        IconImgAdd: "fbIcon.png",
-        IconImgUrl: "https://www.facebook.com/Routelearning/"),
-    IconAndUrl(
-        IconImgAdd: "iG.png",
-        IconImgUrl: "https://www.instagram.com/routelearning/"),
-    IconAndUrl(
-        IconImgAdd: "waIcon.png", IconImgUrl: "https://wa.me/+201023639954"),
-  ];
 
   @override
   Widget build(BuildContext context) {
@@ -77,22 +61,8 @@ class MyContact extends StatelessWidget {
               const SizedBox(
                 height: 50,
               ),
-              GridView.builder(
-                  padding: EdgeInsets.symmetric(horizontal: 65),
-                  shrinkWrap: true,
-                  physics: const NeverScrollableScrollPhysics(),
-                  itemCount: SMIconsList.length,
-                  gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
-                    crossAxisCount: 3,
-                    mainAxisSpacing: 60,
-                    crossAxisSpacing: 100,
-                  ),
-                  itemBuilder: (BuildContext, index) {
-                    return SMediaIcon(
-                      iconAdd: SMIconsList[index].IconImgAdd,
-                      iconURL: SMIconsList[index].IconImgUrl,
-                    );
-                  }),
+              Gridviewcontacts(SMIconsGridList: SMIconsList),
+
               // Row(
               //   mainAxisAlignment: MainAxisAlignment.spaceAround,
               //   children: [
