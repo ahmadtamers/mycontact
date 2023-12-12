@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:url_launcher/url_launcher.dart';
+import 'package:gammaltechcourseproject/ui/startSMButtonScreen/startSMButtonScreen.dart';
 
 class SMediaIcon extends StatelessWidget {
   String iconAdd;
@@ -14,7 +14,13 @@ class SMediaIcon extends StatelessWidget {
   Widget build(BuildContext context) {
     return InkWell(
       onTap: () {
-        launchUrl(Uri.parse(iconURL), mode: LaunchMode.externalApplication);
+        Navigator.push(
+          context,
+          MaterialPageRoute(
+              builder: (context) => StartSMButtonScreen(
+                    URLuri: iconURL,
+                  )),
+        );
       },
       child: Image(
         image: AssetImage("assets/$iconAdd"),
