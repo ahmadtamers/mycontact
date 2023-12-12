@@ -26,7 +26,6 @@ class MyContact extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       body: SafeArea(
-        
         child: SingleChildScrollView(
           physics: const BouncingScrollPhysics(),
           child: Column(
@@ -36,13 +35,15 @@ class MyContact extends StatelessWidget {
               const SizedBox(
                 height: 20,
               ),
-               Padding(
-                 padding: EdgeInsets.symmetric(horizontal: 100,),
-                 child: ClipRRect(
+              Padding(
+                padding: EdgeInsets.symmetric(
+                  horizontal: 100,
+                ),
+                child: ClipRRect(
                   child: Image(image: AssetImage("assets/pp.jpeg")),
-                  borderRadius: BorderRadius.circular(500),
-                           ),
-               ),
+                  borderRadius: BorderRadius.circular(160),
+                ),
+              ),
               const SizedBox(
                 height: 20,
               ),
@@ -77,7 +78,7 @@ class MyContact extends StatelessWidget {
                 height: 50,
               ),
               GridView.builder(
-                padding: EdgeInsets.symmetric(horizontal: 65),
+                  padding: EdgeInsets.symmetric(horizontal: 65),
                   shrinkWrap: true,
                   physics: const NeverScrollableScrollPhysics(),
                   itemCount: SMIconsList.length,
