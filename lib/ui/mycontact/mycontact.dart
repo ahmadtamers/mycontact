@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:gammaltechcourseproject/ui/SocialMediaIcon/SMICON.dart';
 import 'package:url_launcher/url_launcher.dart';
+import 'package:gammaltechcourseproject/ui/GridViewOfApps/GridViewOfApps.dart';
 
 class IconAndUrl {
   String IconImgAdd;
@@ -8,9 +8,14 @@ class IconAndUrl {
   IconAndUrl({required this.IconImgAdd, required this.IconImgUrl});
 }
 
-class MyContact extends StatelessWidget {
+class MyContact extends StatefulWidget {
   MyContact({Key? key}) : super(key: key);
 
+  @override
+  State<MyContact> createState() => _MyContactState();
+}
+
+class _MyContactState extends State<MyContact> {
   List<IconAndUrl> SMIconsList = [
     IconAndUrl(
         IconImgAdd: "fbIcon.png",
@@ -22,11 +27,57 @@ class MyContact extends StatelessWidget {
         IconImgAdd: "waIcon.png", IconImgUrl: "https://wa.me/+201023639954"),
   ];
 
+  String? PlatformIconHistory;
+
+  Uri? PlatformLinkHistory;
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      appBar: AppBar(
+        elevation: 0,
+        backgroundColor: Colors.transparent,
+        leading: InkWell(
+          onTap: () {},
+          child: Icon(
+            Icons.home,
+            color: Colors.black,
+            size: 30,
+          ),
+        ),
+        title: Center(
+          child: Title(
+              color: Colors.black,
+              child: Text(
+                "My Contact",
+                style: TextStyle(color: Colors.black, fontSize: 30),
+              )),
+        ),
+        actions: [
+          GestureDetector(
+              onTap: () {
+                PlatformLinkHistory == null
+                    ? launchUrl(Uri.parse("tel:+201023639954"))
+                    : launchUrl(PlatformLinkHistory!);
+              },
+              child: Padding(
+                padding: const EdgeInsets.only(right: 20),
+                child: PlatformIconHistory == null
+                    ? Icon(
+                        Icons.phone,
+                        color: Colors.black,
+                        size: 30,
+                      )
+                    : Padding(
+                        padding: const EdgeInsets.only(top: 10),
+                        child: Image(
+                          image: AssetImage("assets/$PlatformIconHistory"),
+                        ),
+                      ),
+              ))
+        ],
+      ),
       body: SafeArea(
-        
         child: SingleChildScrollView(
           physics: const BouncingScrollPhysics(),
           child: Column(
@@ -36,13 +87,15 @@ class MyContact extends StatelessWidget {
               const SizedBox(
                 height: 20,
               ),
-               Padding(
-                 padding: EdgeInsets.symmetric(horizontal: 100,),
-                 child: ClipRRect(
+              Padding(
+                padding: EdgeInsets.symmetric(
+                  horizontal: 100,
+                ),
+                child: ClipRRect(
                   child: Image(image: AssetImage("assets/pp.jpeg")),
                   borderRadius: BorderRadius.circular(500),
-                           ),
-               ),
+                ),
+              ),
               const SizedBox(
                 height: 20,
               ),
@@ -77,7 +130,7 @@ class MyContact extends StatelessWidget {
                 height: 50,
               ),
               GridView.builder(
-                padding: EdgeInsets.symmetric(horizontal: 65),
+                  padding: EdgeInsets.symmetric(horizontal: 65),
                   shrinkWrap: true,
                   physics: const NeverScrollableScrollPhysics(),
                   itemCount: SMIconsList.length,
@@ -87,9 +140,19 @@ class MyContact extends StatelessWidget {
                     crossAxisSpacing: 100,
                   ),
                   itemBuilder: (BuildContext, index) {
-                    return SMediaIcon(
-                      iconAdd: SMIconsList[index].IconImgAdd,
-                      iconURL: SMIconsList[index].IconImgUrl,
+                    return InkWell(
+                      onTap: () {
+                        launchUrl(Uri.parse(SMIconsList[index].IconImgUrl),
+                            mode: LaunchMode.externalApplication);
+                        PlatformLinkHistory =
+                            Uri.parse(SMIconsList[index].IconImgUrl);
+                        PlatformIconHistory = SMIconsList[index].IconImgAdd;
+                        setState(() {});
+                      },
+                      child: Image(
+                        image: AssetImage(
+                            "assets/${SMIconsList[index].IconImgAdd}"),
+                      ),
                     );
                   }),
               // Row(
