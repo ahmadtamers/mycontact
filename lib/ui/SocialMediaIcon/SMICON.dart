@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:gammaltechcourseproject/ui/startSMButtonScreen/startSMButtonScreen.dart';
+import 'package:url_launcher/url_launcher.dart';
 
 class SMediaIcon extends StatelessWidget {
   String iconAdd;
@@ -14,12 +14,21 @@ class SMediaIcon extends StatelessWidget {
   Widget build(BuildContext context) {
     return InkWell(
       onTap: () {
-        Navigator.push(
-          context,
-          MaterialPageRoute(
-              builder: (context) => StartSMButtonScreen(
-                    URLuri: iconURL,
-                  )),
+        showModalBottomSheet(
+          context: context,
+          builder: (context) {
+            return ElevatedButton(
+              onPressed: () {
+                launchUrl(Uri.parse(iconURL));
+              },
+              child: Padding(
+                padding: const EdgeInsets.all(10),
+                child: Text("Start Social Media"),
+              ),
+              style: ButtonStyle(
+                  backgroundColor: MaterialStateProperty.all(Colors.red)),
+            );
+          },
         );
       },
       child: Image(
