@@ -4,10 +4,12 @@ import 'package:url_launcher/url_launcher.dart';
 class SMediaIcon extends StatelessWidget {
   String iconAdd;
   String iconURL;
+  Function HistoryIconState;
   SMediaIcon({
     Key? key,
     required this.iconAdd,
     required this.iconURL,
+    required this.HistoryIconState,
   }) : super(key: key);
 
   @override
