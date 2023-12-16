@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:gammaltechcourseproject/ui/myContactProvider/myContactProvider.dart';
 import 'package:gammaltechcourseproject/ui/startSMButtonScreen/startSMButtonScreen.dart';
+import 'package:provider/provider.dart';
 
 class SMediaIcon extends StatelessWidget {
   String iconAdd;
@@ -12,18 +14,23 @@ class SMediaIcon extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return InkWell(
-      onTap: () {
-        Navigator.push(
-          context,
-          MaterialPageRoute(
-              builder: (context) => StartSMButtonScreen(
-                    URLuri: iconURL,
-                  )),
-        );
-      },
-      child: Image(
-        image: AssetImage("assets/$iconAdd"),
+    return Consumer<MyContactProvider>(
+      builder: (context, value, child) => InkWell(
+        onTap: () {
+          value.HistoryIcon = iconAdd;
+          value.HistoryIconLink = Uri.parse(iconURL);
+          value.notifyListeners();
+          Navigator.push(
+            context,
+            MaterialPageRoute(
+                builder: (context) => StartSMButtonScreen(
+                      URLuri: iconURL,
+                    )),
+          );
+        },
+        child: Image(
+          image: AssetImage("assets/$iconAdd"),
+        ),
       ),
     );
   }
