@@ -14,10 +14,10 @@ class MyContactProvider extends ChangeNotifier {
     _HistoryIconLink = Uri.parse(historyIconLinkValue);
   }
 
-  String? getHistoryIconValue() => _HistoryIcon;
+  String getHistoryIconValue() => _HistoryIcon ?? "";
 
-  Uri? getHistoryIconLinkValue() {
-    return _HistoryIconLink;
+  Uri getHistoryIconLinkValue() {
+    return _HistoryIconLink ?? Uri.parse("");
   }
 
   @override

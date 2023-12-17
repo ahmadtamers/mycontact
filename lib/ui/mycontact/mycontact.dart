@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:gammaltechcourseproject/ui/myContactProvider/myContactProvider.dart';
 import 'package:provider/provider.dart';
+import 'package:tuple/tuple.dart';
 import 'package:url_launcher/url_launcher.dart';
 import 'package:gammaltechcourseproject/ui/gridviewcontacts/gridViewContacts.dart';
 import 'package:gammaltechcourseproject/ui/SMListContact/SMListContact.dart';
@@ -31,16 +32,18 @@ class MyContact extends StatelessWidget {
               )),
         ),
         actions: [
-          Consumer<MyContactProvider>(
+          Selector<MyContactProvider, Tuple2<String, Uri>>(
+            selector: (p0, p1) => Tuple2(
+                p1.getHistoryIconValue()!, p1.getHistoryIconLinkValue()!),
             builder: (context, value, child) => GestureDetector(
                 onTap: () {
-                  value.getHistoryIconLinkValue() == null
+                  value.item2 == ""
                       ? launchUrl(Uri.parse("tel:+201023639954"))
-                      : launchUrl(value.getHistoryIconLinkValue()!);
+                      : launchUrl(value.item2!);
                 },
                 child: Padding(
                   padding: const EdgeInsets.only(right: 20),
-                  child: value.getHistoryIconValue() == null
+                  child: value.item1 == ""
                       ? Icon(
                           Icons.phone,
                           color: Colors.black,
@@ -49,8 +52,7 @@ class MyContact extends StatelessWidget {
                       : Padding(
                           padding: const EdgeInsets.only(top: 10),
                           child: Image(
-                            image: AssetImage(
-                                "assets/${value.getHistoryIconValue()}"),
+                            image: AssetImage("assets/${value.item1}"),
                           ),
                         ),
                 )),
