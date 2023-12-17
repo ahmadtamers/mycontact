@@ -34,13 +34,13 @@ class MyContact extends StatelessWidget {
           actions: [
             GestureDetector(
                 onTap: () {
-                  value.HistoryIconLink == null
+                  value.getHistoryIconLinkValue() == null
                       ? launchUrl(Uri.parse("tel:+201023639954"))
-                      : launchUrl(value.HistoryIconLink!);
+                      : launchUrl(value.getHistoryIconLinkValue()!);
                 },
                 child: Padding(
                   padding: const EdgeInsets.only(right: 20),
-                  child: value.HistoryIcon == null
+                  child: value.getHistoryIconValue() == null
                       ? Icon(
                           Icons.phone,
                           color: Colors.black,
@@ -49,7 +49,8 @@ class MyContact extends StatelessWidget {
                       : Padding(
                           padding: const EdgeInsets.only(top: 10),
                           child: Image(
-                            image: AssetImage("assets/${value.HistoryIcon}"),
+                            image: AssetImage(
+                                "assets/${value.getHistoryIconValue()}"),
                           ),
                         ),
                 ))

@@ -3,8 +3,22 @@ import 'dart:html';
 import 'package:flutter/material.dart';
 
 class MyContactProvider extends ChangeNotifier {
-  String? HistoryIcon;
-  Uri? HistoryIconLink;
+  String? _HistoryIcon;
+  Uri? _HistoryIconLink;
+
+  void setHistoryIcon(historyIconValue) {
+    _HistoryIcon = historyIconValue;
+  }
+
+  void setHistoryIconLink(historyIconLinkValue) {
+    _HistoryIconLink = Uri.parse(historyIconLinkValue);
+  }
+
+  String? getHistoryIconValue() => _HistoryIcon;
+
+  Uri? getHistoryIconLinkValue() {
+    return _HistoryIconLink;
+  }
 
   @override
   void notifyListeners() {

@@ -17,8 +17,8 @@ class SMediaIcon extends StatelessWidget {
     return Consumer<MyContactProvider>(
       builder: (context, value, child) => InkWell(
         onTap: () {
-          value.HistoryIcon = iconAdd;
-          value.HistoryIconLink = Uri.parse(iconURL);
+          value.setHistoryIcon(iconAdd);
+          value.setHistoryIconLink(iconURL);
           value.notifyListeners();
           Navigator.push(
             context,
