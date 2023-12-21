@@ -28,8 +28,11 @@ class SMediaIcon extends StatelessWidget {
                     )),
           );
         },
-        child: Image(
-          image: AssetImage("assets/$iconAdd"),
+        child: ClipRRect(
+          borderRadius: BorderRadius.circular(50),
+          child: Image(
+            image: AssetImage("assets/$iconAdd"),
+          ),
         ),
       ),
     );
