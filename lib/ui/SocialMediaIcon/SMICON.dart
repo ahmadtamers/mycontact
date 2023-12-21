@@ -6,6 +6,7 @@ import 'package:provider/provider.dart';
 class SMediaIcon extends StatelessWidget {
   String iconAdd;
   String iconURL;
+  double? myRadius;
   SMediaIcon({
     Key? key,
     required this.iconAdd,
@@ -28,8 +29,14 @@ class SMediaIcon extends StatelessWidget {
                     )),
           );
         },
+        onDoubleTap: () {
+          value.iconRaduis == 10
+              ? {myRadius = value.iconRaduis = 30}
+              : {myRadius = value.iconRaduis = 10};
+          value.notifyListeners();
+        },
         child: ClipRRect(
-          borderRadius: BorderRadius.circular(50),
+          borderRadius: BorderRadius.circular(myRadius ?? 10),
           child: Image(
             image: AssetImage("assets/$iconAdd"),
           ),

@@ -5,6 +5,7 @@ import 'package:flutter/material.dart';
 class MyContactProvider extends ChangeNotifier {
   String? _HistoryIcon;
   Uri? _HistoryIconLink;
+  double? iconRaduis = 0;
 
   void setHistoryIcon(historyIconValue) {
     _HistoryIcon = historyIconValue;
