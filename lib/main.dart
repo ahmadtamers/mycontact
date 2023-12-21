@@ -10,8 +10,15 @@ class MyApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return ChangeNotifierProvider(
-      create: (context) => MyContactProvider(),
+    return MultiProvider(
+      providers: [
+        ChangeNotifierProvider(
+          create: (context) => MyContactProvider(),
+        ),
+        ChangeNotifierProvider(
+          create: (context) => IconRadius(),
+        ),
+      ],
       child: MaterialApp(
         debugShowCheckedModeBanner: false,
         home: MyContact(),

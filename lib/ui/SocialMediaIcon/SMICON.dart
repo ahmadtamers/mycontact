@@ -15,8 +15,8 @@ class SMediaIcon extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Consumer<MyContactProvider>(
-      builder: (context, value, child) => InkWell(
+    return Consumer2<MyContactProvider, IconRadius>(
+      builder: (context, value, value2, child) => InkWell(
         onTap: () {
           value.setHistoryIcon(iconAdd);
           value.setHistoryIconLink(iconURL);
@@ -30,10 +30,10 @@ class SMediaIcon extends StatelessWidget {
           );
         },
         onDoubleTap: () {
-          value.iconRaduis == 10
-              ? {myRadius = value.iconRaduis = 30}
-              : {myRadius = value.iconRaduis = 10};
-          value.notifyListeners();
+          value2.iconRaduis == null
+              ? {myRadius = value2.iconRaduis = 30}
+              : {myRadius = value2.iconRaduis = null};
+          value2.notifyListeners();
         },
         child: ClipRRect(
           borderRadius: BorderRadius.circular(myRadius ?? 10),
